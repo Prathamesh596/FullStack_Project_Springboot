@@ -17,6 +17,6 @@ public class Category {
 
     private String description; // added to fix setDescription error
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Product> products;
 }

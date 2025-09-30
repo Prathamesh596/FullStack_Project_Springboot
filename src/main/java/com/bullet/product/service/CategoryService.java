@@ -2,6 +2,7 @@ package com.bullet.product.service;
 
 import com.bullet.product.dto.CategoryDTO;
 import com.bullet.product.entity.Category;
+import com.bullet.product.exception.CategoryAlreadyExistException;
 import com.bullet.product.mapper.CategoryMapper;
 import com.bullet.product.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class CategoryService {
 
     // CREATE
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+       Optional<Category> optionalCategory= categoryRepository.findByName(categoryDTO.getName());
+       if(optionalCategory.isPresent()){
+           throw new CategoryAlreadyExistException("Category "+categoryDTO.getName()+"already exists");
+       }
         Category category = CategoryMapper.toCategoryEntity(categoryDTO);
         category = categoryRepository.save(category);
         return CategoryMapper.toCategoryDTO(category);
