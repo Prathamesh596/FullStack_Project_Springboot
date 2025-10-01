@@ -3,13 +3,17 @@ package com.bullet.product.controller;
 import com.bullet.product.dto.CategoryDTO;
 import com.bullet.product.exception.CategoryAlreadyExistException;
 import com.bullet.product.service.CategoryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Tag(
+        name="Category Rest Api crud Operations",
+        description = "Create,Update,Read, Delete Operations for Category Rest Api"
+)
 @RestController
 @RequestMapping("/api/categories")
 @AllArgsConstructor
